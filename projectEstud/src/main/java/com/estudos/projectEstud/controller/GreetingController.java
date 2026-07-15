@@ -1,4 +1,4 @@
-package com.estudos.projectEstud.controllers;
+package com.estudos.projectEstud.controller;
 
 import com.estudos.projectEstud.model.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
