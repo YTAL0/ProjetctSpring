@@ -1,16 +1,26 @@
 package com.estudos.projectEstud.model;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "person")
 public class Person implements Serializable {
     private static final long serialVersionUID = 1l;
-    private String name;
-    private String lastName;
-    private String gender;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
-    private String adress;
 
+   @Column(name = "first_name", nullable = false, length = 80)
+    private String name;
+    @Column(name = "last_name", nullable = false, length = 80)
+    private String lastName;
+    @Column(nullable = false, length = 1)
+    private String gender;
+    @Column(nullable = false, length = 100)
+    private String adress;
     public Person() {
     }
 
