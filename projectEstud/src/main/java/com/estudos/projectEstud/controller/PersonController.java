@@ -15,14 +15,12 @@ public class PersonController {
 
     @Autowired
     private PersonServices service;
-    @RequestMapping(value = "/{id}/", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Person findByID(@PathVariable("id") Long id){
         return service.findByID(id);
     }
 
-    @RequestMapping(value = "/all/", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all/",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll(){
         if(service.findAll().isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(HttpStatus.NOT_FOUND);
@@ -30,7 +28,7 @@ public class PersonController {
         return ResponseEntity.ok(service.findAll());
     }
 
-    @RequestMapping(method = RequestMethod.POST,
+    @PostMapping(
     produces = MediaType.APPLICATION_JSON_VALUE,
     consumes = MediaType.APPLICATION_JSON_VALUE)
     public Person create(@RequestBody Person person) {
@@ -43,7 +41,7 @@ public class PersonController {
     public Person update(@RequestBody Person person) {
         return service.update(person);
     }
-    @RequestMapping(value = "/{id}/", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}/")
     public ResponseEntity delete(@PathVariable("id") Long id, HttpMethod httpMethod){
         service.delete(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("delete");
