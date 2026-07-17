@@ -16,11 +16,12 @@ public class PersonServices {
     private List<Person>person = new ArrayList<Person>();
 
     public List <Person> findAll(){
+        logger.info("Return people");
         return person;
     }
 
     public Person findByID(String id){
-        logger.info("UUUUUUUUUU");
+        logger.info("Create person");
         Person person1 = new Person();
         person.add(person1);
         person1.setID(counter.incrementAndGet());
@@ -30,4 +31,17 @@ public class PersonServices {
         person1.setGender("M" + id);
         return person1;
     }
+    public Person create(Person person){
+        logger.info("Create people");
+        this.person.add(person);
+        int tam = this.person.size() - 1;
+        person.setID(counter.incrementAndGet());
+        return this.person.get(tam);
+    }
+    public void delete(String id){
+        logger.info("Deletaaaaaaaaaaaaaaaado");
+        int t = Integer.parseInt(id);
+        person.remove(t - 1);
+    }
+
 }
