@@ -42,9 +42,9 @@ public class PersonController {
         return service.update(person);
     }
     @DeleteMapping(value = "/{id}/")
-    public ResponseEntity delete(@PathVariable("id") Long id, HttpMethod httpMethod){
+    public ResponseEntity<?> delete(@PathVariable("id") Long id, HttpMethod httpMethod){
         service.delete(id);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body("delete");
+        return ResponseEntity.noContent().build();
     }
 
 }
